@@ -1,0 +1,210 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{mathptmx}
+\usepackage{geometry}
+\usepackage{biblatex}
+\addbibresource{mybibliography.bib}
+
+\title{Deliverable 1}
+\author{Gurjot Singh}
+\date{Student ID: 40091208}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1:}
+\textbf{Give a brief description, not exceeding one page, of your function, including the domain
+and co-domain of function, and the characteristics that make it unique. }
+\vskip 1 cm
+The function $f(x,y) = x^y$ is also called power function in the field of Mathematics. It refers to raising x to the power of y. Here, x is the base and y is the exponent to which x is raised to.\cite{r2}
+\paragraph{DOMAIN\vskip 0.5cm}
+    All real numbers.
+\paragraph{CO-DOMAIN\vskip 0.5cm}
+    All real numbers.
+\paragraph{Characteristics of the function}
+    
+    
+    \begin{enumerate}
+\item As the power increases, the graph of power function flattens somewhat near the origin and become steeper away from the origin.
+\item The function is \textbf{not a one to one} function. For Example:- both $2^2$ and $-2^2$ evaluates to the same result $(4)$.
+\item However, this function is an \textbf{onto function}.
+\end{enumerate}
+
+
+\section*{Problem 2:}
+\textbf{Express requirements of your function based on the style given in the ISO/IEC/IEEE
+29148 Standard. Associate each requirement with a unique identifier.}
+\vskip 1 cm
+\textbf{Functional requirements for function : $f(x,y) = x^y$}
+\vskip 1cm
+\textbf{First Requirement}
+\vskip 0.25cm
+ID - R1
+\vskip 0.25cm
+Type - Functional Requirement
+\vskip 0.25cm
+Version - 1.0
+\vskip 0.25cm
+Difficulty - Intermediate
+\vskip 0.25cm
+Description - The function calculates the result and displays in appropriate numeric format.
+\vskip 1cm
+\textbf{Second Requirement}
+\vskip 0.25cm
+ID - R2
+\vskip 0.25cm
+Type - Functional Requirement
+\vskip 0.25cm
+Version - 1.0
+\vskip 0.25cm
+Difficulty - Easy
+\vskip 0.25cm
+Description - If the inputs are provided in a format other than numeric values, it should throw an error.
+\vskip 1cm
+
+\textbf{Third Requirement}
+\vskip 0.25cm
+ID - R3
+\vskip 0.25cm
+Type - Functional Requirement
+\vskip 0.25cm
+Version - 1.0
+\vskip 0.25cm
+Difficulty - Easy
+\vskip 0.25cm
+Description - The function validates the input values. These should fall within the domain of the function (i.e. Real numbers).
+\vskip 1cm
+
+\textbf{Fourth Requirement}
+\vskip 0.25cm
+ID - R4
+\vskip 0.25cm
+Type - Functional Requirement
+\vskip 0.25cm
+Version - 1.0
+\vskip 0.25cm
+Difficulty - Easy
+\vskip 0.25cm
+Description - If the value of y is a decimal number, the value of x should be 0 or greater than 0.
+\vskip 0.25cm
+
+
+\section*{Problem 3:}
+\textbf{Give a brief description of your algorithms and express each of them in pseudocode.} 
+\vskip 1 cm
+
+Below are the two algorithms which were considered for calculating the power function.
+
+\textbf{Algorithm A:} It involves an recursive approach for calculating the powers of integer values of $x$ and $y$. The recursion is further made smart by checking whether the power is even or odd, and finding the power accordingly, in $O(log(y))$ time, which is very efficient with respect to the approach used in algorithm B.
+For calculating decimal powers of a number, this algorithm breaks the problem into two sub-problems:-
+\begin{enumerate}
+    \item Calculating the power of \textbf{Integral-Part} of $y$  .
+    \item Calculating the power of \textbf{Fractional-Part} of $y$  .
+\end{enumerate}
+Problem 1 is solved as described above, but for problem 2, the decimal number is first converted into fraction. The denominator part in this fraction denotes the Nth root of $x$. After calculating the Nth root of $x$, the Nth root is then raised to the Numerator of that fraction.
+
+\vskip 0.25cm
+After both these sub-problems are solved, the results of problem 1 and 2 are multiplied together and we get our answer.
+\vskip 0.25cm
+\textbf{Advantage of Algorithm A:}
+\vskip 0.25cm
+ Its amortized time complexity is $O(log(y))$. Hence, it is very efficient with respect to the normal way of finding a power by basic multiplication. Moreover, recursion is easy to understand and has high readability.
+ 
+ \vskip 0.25cm
+\textbf{Disadvantage of Algorithm A:}
+\vskip 0.25cm
+ It is implementation is bit complex.
+
+\vskip 1cm
+\textbf{Algorithm B:} It involves the conventional approach for calculating the powers by using iterative multiplication.\cite{r1} Its time complexity is $O(y)$, which is not very efficient with respect to the approach used in algorithm A.
+\vskip 0.25cm
+\textbf{Advantage of Algorithm B:}
+\vskip 0.25cm
+ It is pretty straightforward to implement as compared to the algorithm A. Also, it avoids memory overflow of input.
+ 
+ \vskip 0.25cm
+\textbf{Disadvantage of Algorithm B:}
+\vskip 0.25cm
+ Its time complexity is $O(y)$. Therefore, for large values of y, it takes a lot of time to execute. Hence, it is not that efficient as compared to the algorithm A.
+ 
+\vskip .2cm
+After considering the advantages and disadvantages of both A and B, I selected the \textbf{algorithm A}.
+\vskip 1cm
+
+\section*{Pseudocode for Algorithm A}
+Calculate: $f(x,y) = x^y$
+
+\begin{algorithm}
+\caption{POWER(x,y)}
+\begin{algorithmic} 
+ \item \textbf{IsADecimalNumber(a):} It checks whether a is not an integer.
+ \vskip .06cm
+ \textbf{IsAnInteger(a):} It checks whether a is an integer.
+ \vskip .06cm
+ \textbf{GetNR(a):} It returns the Numerator of the decimal number(a) after converting it into fraction.
+ \vskip .06cm
+ \textbf{GetDR(a):} It returns the Denominator of the decimal number(a) after converting it into fraction.
+ \vskip .06cm
+ \textbf{GetNthPower(a,n):} It returns the nth root of integer a.
+ 
+\STATE 1. $Input(x,y)$\\
+\STATE 2. if $x = 0$ then\\
+\STATE 3. \qquad if $y \not=0$ then\\
+\STATE 4. \qquad \qquad return $0$
+\STATE 5. \qquad else
+\STATE 6. \qquad \qquad return UNDEFINED
+\STATE 7. \qquad end if
+\STATE 8. end if
+
+\STATE 9. if $y = 0$ then\\
+\STATE 10. \qquad if $x \not=0$ then\\
+\STATE 11. \qquad \qquad return $1$
+\STATE 12. \qquad else
+\STATE 13. \qquad \qquad return UNDEFINED
+\STATE 14. \qquad end if
+\STATE 15. end if
+
+\STATE 16. if $x < 0$ then\\
+\STATE 17. \qquad if $IsADecimalNumber(y) $ then\\
+\STATE 18. \qquad \qquad return ERROR
+\STATE 19. \qquad end if
+\STATE 20. end if
+
+\STATE 21. if $IsAnInteger(y)$ then\\
+\STATE 22.\qquad return $POWER(x,y)$
+\STATE 23. else
+\STATE 24.\qquad  $num \leftarrow GetNR(DecimalPart(y))$
+\STATE 25.\qquad  $den \leftarrow GetDR(DecimalPart(y))$
+\STATE 26.\qquad  $NthRoot \leftarrow GetNthPower(x,denominator)$
+\STATE 27.\qquad  return $POWER(x,IntegralPart(y))*POWER(NthRoot,num)$
+\STATE 28. end if
+\end{algorithmic}
+\end{algorithm}
+
+
+\newpage
+\vskip 1cm
+
+\section*{Pseudocode for Algorithm B}
+Calculate: $f(x,y) = x^y$
+
+\begin{algorithm}
+\caption{POWER}
+\begin{algorithmic} 
+\STATE 1. $Input(x,y)$\\
+\STATE 2. $output \leftarrow 1 $
+\STATE 3. while $y \not=0 $ then\\
+\STATE 4.\qquad  $output \leftarrow output*x$
+\STATE 5.\qquad  $y \leftarrow y-1$
+\STATE 6. end while
+\STATE 7. return output
+\end{algorithmic}
+\end{algorithm}
+
+\printbibliography
+\end{document}
